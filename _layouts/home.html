@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1 class="page-heading">Posts</h1>
+  
+  {{ content }}
+
+  <div class="post-list">
+    {% for post in site.posts %}
+      <div style="width: 300px; float: left;">
+        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h2>
+	{% if post.image %}<img src="{{post.image}}" style="max-width: 200px;"/>{% endif%}
+        <br/>	
+	{% if post.description %}{{ post.description }}{% else %}{{ site.description }}{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+
+</div>
